@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "node",
+        "module": "nodenext",
+        "strict": true,
+        "esModuleInterop": true,
+        "baseUrl": ".",
+        "paths": {
+        "pages/*": ["./pages/*"],
+        "utils/*": ["./utils/*"]
+        },
+        "types": [
+            "node",
+            "@playwright/test",
+            "@wdio/globals/types",
+            "expect-webdriverio",
+            "@wdio/mocha-framework",
+            "@wdio/appium-service"
+        ],
+    },
+    "include": [
+        "test",
+        "wdio.conf.ts"
+    ]
+}
