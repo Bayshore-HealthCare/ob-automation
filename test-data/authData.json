@@ -1,0 +1,11 @@
+{
+  "appPackage": "com.onebayshore.mobile",
+  "appActivity": ".MainActivity",
+  "platformName": "Android",
+  "platformVersion": "12.0",
+  "deviceName": "Android Emulator",
+  "automationName": "UiAutomator2",
+  "username": "obtestjames",
+  "password": "Onebayshore@12345!!!",
+  "defaultTimeout": 10000
+}

@@ -4,3 +4,13 @@ node_modules/
 /playwright/.cache/
 /screenshots/
 .env
+
+# App binaries
+app/
+*.apk
+*.ipa
+
+# Test reports and logs
+allure-results/
+logs/
+wdio-report/

@@ -1,0 +1,7 @@
+{
+  "timeouts": {
+    "default": 5000,
+    "login": 10000,
+    "navigation": 8000
+  }
+}

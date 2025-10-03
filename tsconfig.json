@@ -20,6 +20,10 @@
     },
     "include": [
         "test",
+        "tests",
+        "testsmob",
+        "pages",
+        "utils",
         "wdio.conf.ts"
     ]
 }

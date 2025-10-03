@@ -1,0 +1,21 @@
+{
+  "pageTitle": "OneBayshore Mobile",
+  "selectors": {
+    "headerText": {
+      "strategy": "text",
+      "value": "Subscribe News And Job Opportunities From Bayshore"
+    },
+    "nameField": {
+      "strategy": "hint",
+      "value": "John"
+    },
+    "emailField": {
+      "strategy": "hint",
+      "value": "john@hotmail.com"
+    },
+    "subscribeButton": {
+      "strategy": "accessibility_id",
+      "value": "SUBSCRIBE"
+    }
+  }
+}

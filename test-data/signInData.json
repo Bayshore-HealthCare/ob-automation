@@ -1,0 +1,17 @@
+{
+  "pageTitle": "OneBayshore Mobile",
+  "selectors": {
+    "headerText": {
+      "strategy": "text",
+      "value": "One-stop Caregivers' App"
+    },
+    "signInHereButton": {
+      "strategy": "text",
+      "value": "SIGN IN HERE"
+    },
+    "newsJobButton": {
+      "strategy": "accessibility_id",
+      "value": "NEWS AND JOB OPPORTUNITIES"
+    }
+  }
+}

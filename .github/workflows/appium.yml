@@ -1,0 +1,59 @@
+name: Appium Tests
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+    - name: Install dependencies
+      run: npm ci
+    - name: Set up JDK 11
+      uses: actions/setup-java@v4
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+    - name: Install Appium
+      run: npm install -g appium
+    - name: Install Appium drivers
+      run: |
+        appium driver install uiautomator2
+        appium driver install xcuitest
+    - name: Start Appium server
+      run: appium &
+    - name: Create and start Android emulator
+      run: |
+        echo "y" | sdkmanager "platform-tools" "platforms;android-33" "emulator" "system-images;android-33;google_apis;x86_64"
+        echo "no" | avdmanager create avd -n test_emulator -k "system-images;android-33;google_apis;x86_64" --force
+        emulator -avd test_emulator -no-window -no-audio -no-boot-anim &
+        adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done;'
+    - name: Download and install APK
+      run: |
+        mkdir -p app
+        wget --no-check-certificate 'https://drive.google.com/uc?export=download&id=1iPlv2UgptbVHFJlVvAo7LrPmXtgYACvG' -O app/onebayshore.apk
+        adb install app/onebayshore.apk
+    - name: Run Appium tests with WebdriverIO
+      run: npm run test:ci
+    - name: Upload Allure Results
+      uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: allure-results
+        path: allure-results/
+        retention-days: 30
+    - name: Upload JUnit Test Results
+      uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: test-results
+        path: test-results/
+        retention-days: 30
